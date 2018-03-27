@@ -20,7 +20,7 @@ D=(f'*(2*x+f))/x_norm;
 mu(i)=(B-sqrt(B^2-D));%this is the mu * Dt term
 
 x=(1-mu(i))*x+f;
-mu_thr(i)=1/N*(xold'*f);%this is the mu_theory Dt 
+mu_thr(i)=xold'*f/N;%this is the mu_theory Dt 
 %mu(i)=mu(i);
 %store(i,:)=x;
 end
