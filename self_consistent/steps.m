@@ -4,6 +4,17 @@ function x = steps(x0,T,tot_time,Dt,N,J,h)
 N_iter=tot_time/Dt;
 x(:,1)=x0;
 tic
+t_wait=round(N^(2/3)/(1-T));
+
+for i=2:t_wait/Dt
+        z=randn(N,1)*sqrt(2*Dt*T);
+        f=Dt*(J*x+h)+z;
+        x_norm=norm(x)^2;
+        %x_norm=N;
+        xf=x'*f;
+        x=x*(-xf/x_norm+sqrt((xf/x_norm)^2+(N-norm(f)^2)/x_norm))+f;
+end
+
 for i=2:N_iter
         z=randn(N,1)*sqrt(2*Dt*T);
         f=Dt*(J*x(:,i-1)+h)+z;
