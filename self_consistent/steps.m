@@ -1,11 +1,11 @@
-function x = steps(x0,T,tot_time,Dt,N,J,h)
+function x = steps(x0,T,tot_time,Dt,N,J,h,t_wait)
 %SImulates the entire trajectory
-%   Detailed explanation goes here
+
 N_iter=tot_time/Dt;
 x(:,1)=x0;
 tic
-t_wait=round(N^(2/3)/(1-T));
-
+%t_wait=round(N/(1-T));
+%t_wait=10000;
 for i=2:t_wait/Dt
         z=randn(N,1)*sqrt(2*Dt*T);
         f=Dt*(J*x+h)+z;
